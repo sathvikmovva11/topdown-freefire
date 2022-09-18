@@ -1,11 +1,8 @@
 namespace SpriteKind {
     export const background_objects = SpriteKind.create()
 }
-controller.up.onEvent(ControllerButtonEvent.Repeated, function () {
-    roy_player.y += -5
-})
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
-    projectile = sprites.createProjectileFromSprite(img`
+    myDart = sprites.createProjectileFromSprite(img`
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
@@ -24,16 +21,7 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         . . . . . . . . . . . . . . . . 
         `, roy_player, 100, 0)
 })
-controller.right.onEvent(ControllerButtonEvent.Repeated, function () {
-    roy_player.x += 5
-})
-controller.down.onEvent(ControllerButtonEvent.Repeated, function () {
-    roy_player.y += 5
-})
-controller.left.onEvent(ControllerButtonEvent.Repeated, function () {
-    roy_player.x += -5
-})
-let projectile: Sprite = null
+let myDart: Sprite = null
 let roy_player: Sprite = null
 info.setScore(0)
 info.setLife(3)
@@ -229,11 +217,11 @@ rock_3.setPosition(73, 81)
 roy_player.setPosition(43, 100)
 ghost.setPosition(155, -5)
 ghost.follow(roy_player)
-if (projectile.overlapsWith(ghost)) {
-    info.changeScoreBy(1)
-    ghost.setPosition(151, randint(0, 112))
-}
+controller.moveSprite(roy_player)
 forever(function () {
     music.playMelody("E B C5 A B G A F ", 200)
     roy_player.setBounceOnWall(true)
+})
+forever(function () {
+	
 })
